@@ -22,6 +22,7 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for git info
           submodules: recursive
+          token: ${{ secrets.CI_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
