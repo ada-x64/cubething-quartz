@@ -1,32 +1,35 @@
 @font-face {
   font-family: 'Fira Code';
-  src: url('../static/Fira-Code-Nerd/Regular/complete/Fira Code Regular Nerd font Complete Mono.ttf') format('ttf');
+  src: url('../static/font/Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.ttf') format('ttf'),
+      url('../static/font/Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf') format('otf');
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
-/* Sentient */
 @font-face {
-  font-family: 'Sentient';
-  src: url('../static/Sentient/Fonts/WEB/fonts/Sentient-Light.woff2') format('woff2'),
-    url('../static/Sentient/Fonts/WEB/fonts/Sentient-Light.woff') format('woff'),
-    url('../static/Sentient/Fonts/WEB/fonts/Sentient-Light.ttf') format('truetype');
-  font-weight: 300;
+  font-family: 'Chillax';
+  src: url('../static/font/Chillax-Semibold.woff2') format('woff2'),
+    url('../static/font/Chillax-Semibold.woff') format('woff'),
+    url('../static/font/Chillax-Semibold.ttf') format('truetype');
+  font-weight: 600;
   font-display: swap;
   font-style: normal;
 }
 
 /* Oswald */
 @font-face {
-  font-family: 'Oswald';
-  src: url('../static/Oswald/Fonts/WEB/fonts/Oswald-Bold.woff2') format('woff2'),
-    url('../static/Oswald/Fonts/WEB/fonts/Oswald-Bold.woff') format('woff'),
-    url('../static/Oswald/Fonts/WEB/fonts/Oswald-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-family: 'Synonym';
+  src: url('../static/font/Synonym-Regular.woff2') format('woff2'),
+    url('../static/font/Synonym-Regular.woff') format('woff'),
+    url('../static/font/Synonym-Regular.ttf') format('truetype');
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
-
-
-
+// :root {
+//   --bodyFont: 'Synonym' !important;
+//   --headerFont: 'Chillax' !important;
+//   --codeFont: 'Fira Code' !important;
+// }

@@ -5,7 +5,7 @@ import { QuartzPluginData } from "../plugins/vfile"
 import { JSXInternal } from "preact/src/jsx"
 import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
 import path from "path"
-import { QUARTZ } from "./path"
+import { joinSegments, QUARTZ } from "./path"
 import { formatDate, getDate } from "../components/Date"
 import readingTime from "reading-time"
 import { i18n } from "../i18n"
@@ -13,6 +13,37 @@ import chalk from "chalk"
 
 const defaultHeaderWeight = [700]
 const defaultBodyWeight = [400]
+
+const getFontPath = async (p: string) => {
+  return await fs.readFile(path.resolve(p))
+}
+const customFonts: SatoriOptions["fonts"] = [
+  {
+    name: "Fira Code",
+    data: await getFontPath(
+      joinSegments(
+        QUARTZ,
+        "static",
+        "font",
+        "Fira Code Regular Nerd Font Complete Mono Windows Compatible.ttf",
+      ),
+    ),
+    weight: 300,
+    style: "normal" as const,
+  },
+  {
+    name: "Synonym",
+    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Synonym-Regular.ttf")),
+    weight: 400,
+    style: "normal" as const,
+  },
+  {
+    name: "Chillax",
+    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Chillax-Semibold.ttf")),
+    weight: 600,
+    style: "normal" as const,
+  },
+]
 
 export async function getSatoriFonts(headerFont: FontSpecification, bodyFont: FontSpecification) {
   // Get all weights for header and body fonts
@@ -60,6 +91,7 @@ export async function getSatoriFonts(headerFont: FontSpecification, bodyFont: Fo
   const fonts: SatoriOptions["fonts"] = [
     ...headerFonts.filter((font): font is NonNullable<typeof font> => font !== null),
     ...bodyFonts.filter((font): font is NonNullable<typeof font> => font !== null),
+    ...customFonts,
   ]
 
   return fonts

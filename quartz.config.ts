@@ -1,5 +1,29 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import * as ayu from "ayu"
+
+const colors = (prefix: "light" | "dark" | "mirage") => {
+  return {
+    // page bg
+    light: ayu[prefix].editor.bg.hex(),
+    // borders
+    lightgray: ayu[prefix].editor.indentGuide.normal.hex(),
+    // graph links. heavier borders
+    gray: ayu[prefix].syntax.comment.hex(),
+    // body text
+    darkgray: ayu[prefix].editor.fg.hex(),
+    // header text and icons
+    dark: prefix === "light" ? ayu.light.syntax.constant.hex() : ayu[prefix].common.accent.hex(),
+    // link colors, current graph node
+    secondary: prefix === "light" ? ayu.light.syntax.constant.hex() : ayu[prefix].syntax.func.hex(),
+    // hover states and visited graph nodes
+    tertiary: ayu[prefix].syntax.special.hex(),
+    // internal link background, highlighted text, highlighted lines of code
+    highlight: ayu[prefix].ui.selection.normal.hex(),
+    // markdown highlighted background
+    textHighlight: ayu[prefix].ui.selection.active.hex(),
+  }
+}
 
 /**
  * Quartz 4 Configuration
@@ -8,7 +32,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "cubething.dev",
+    pageTitle: "<cubething/>",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -18,39 +42,19 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "www.cubething.dev",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", ".stfolder"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        "header": "Oswald",
-        "body": "Sentient",
+        header: "Chillax",
+        body: "Synonym",
         code: "Fira Code",
       },
       colors: {
-        lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
-        },
-        darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
-        },
+        lightMode: colors("light"),
+        darkMode: colors("mirage"),
       },
     },
   },
@@ -62,10 +66,10 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "github-light",
-          dark: "github-dark",
+          light: "ayu-dark",
+          dark: "ayu-dark",
         },
-        keepBackground: false,
+        keepBackground: true,
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
