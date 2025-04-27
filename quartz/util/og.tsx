@@ -22,7 +22,7 @@ const customFonts: SatoriOptions["fonts"] = [
     name: "Fira Code",
     data: await getFontPath(
       joinSegments(
-        QUARTZ,
+        "content",
         "static",
         "font",
         "Fira Code Regular Nerd Font Complete Mono Windows Compatible.ttf",
@@ -33,13 +33,13 @@ const customFonts: SatoriOptions["fonts"] = [
   },
   {
     name: "Synonym",
-    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Synonym-Regular.ttf")),
+    data: await getFontPath(joinSegments("content", "static", "font", "Synonym-Regular.ttf")),
     weight: 400,
     style: "normal" as const,
   },
   {
     name: "Chillax",
-    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Chillax-Semibold.ttf")),
+    data: await getFontPath(joinSegments("content", "static", "font", "Chillax-Semibold.ttf")),
     weight: 600,
     style: "normal" as const,
   },
