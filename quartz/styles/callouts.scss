@@ -1,6 +1,44 @@
 @use "./variables.scss" as *;
 @use "sass:color";
 
+:root {
+  --callout-color: #448aff;
+  --callout-border: #448aff44;
+  --callout-bg: #448aff10;
+
+  --callout-abstract-color: #00b0ff;
+  --callout-abstract-border: #00b0ff44;
+  --callout-abstract-bg: #00b0ff10;
+
+  --callout-info-color: #00b8d4;
+  --callout-info-border: #00b8d444;
+  --callout-info-bg: #00b8d410;
+
+  --callout-tip-color: #00bfa5;
+  --callout-tip-border: #00bfa544;
+  --callout-tip-bg: #00bfa510;
+
+  --callout-success-color: #09ad7a;
+  --callout-success-border: #09ad7144;
+  --callout-success-bg: #09ad7110;
+
+  --callout-question-color: #dba642;
+  --callout-question-border: #dba64244;
+  --callout-question-bg: #dba64210;
+
+  --callout-warning-color: #db8942;
+  --callout-warning-border: #db894244;
+  --callout-warning-bg: #db894210;
+
+  --callout-danger-color: #db4242;
+  --callout-danger-border: #db424244;
+  --callout-danger-bg: #db424210;
+
+  --callout-example-color: #7a43b5;
+  --callout-example-border: #7a43b544;
+  --callout-example-bg: #7a43b510;
+}
+
 .callout {
   border: 1px solid var(--border);
   background-color: var(--bg);
@@ -30,24 +68,24 @@
   --callout-icon-fold: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
 
   &[data-callout] {
-    --color: #448aff;
-    --border: #448aff44;
-    --bg: #448aff10;
+    --color: var(--callout-color);
+    --border: var(--callout-border);
+    --bg: var(--callout-bg);
     --callout-icon: var(--callout-icon-note);
   }
 
   &[data-callout="abstract"] {
-    --color: #00b0ff;
-    --border: #00b0ff44;
-    --bg: #00b0ff10;
+    --color: var(--callout-abstract-color);
+    --border: var(--callout-abstract-border);
+    --bg: var(--callout-abstract-bg);
     --callout-icon: var(--callout-icon-abstract);
   }
 
   &[data-callout="info"],
   &[data-callout="todo"] {
-    --color: #00b8d4;
-    --border: #00b8d444;
-    --bg: #00b8d410;
+    --color: var(--callout-info-color);
+    --border: var(--callout-info-border); 
+    --bg: var(--callout-info-bg);
     --callout-icon: var(--callout-icon-info);
   }
 
@@ -56,39 +94,39 @@
   }
 
   &[data-callout="tip"] {
-    --color: #00bfa5;
-    --border: #00bfa544;
-    --bg: #00bfa510;
+    --color: var(--callout-tip-color);
+    --border: var(--callout-tip-border); 
+    --bg: var(--callout-tip-bg);
     --callout-icon: var(--callout-icon-tip);
   }
 
   &[data-callout="success"] {
-    --color: #09ad7a;
-    --border: #09ad7144;
-    --bg: #09ad7110;
+    --color: var(--callout-success-color);
+    --border: var(--callout-success-border); 
+    --bg: var(--callout-success-bg);
     --callout-icon: var(--callout-icon-success);
   }
 
   &[data-callout="question"] {
-    --color: #dba642;
-    --border: #dba64244;
-    --bg: #dba64210;
+    --color: var(--callout-question-color);
+    --border: var(--callout-question-border); 
+    --bg: var(--callout-question-bg);
     --callout-icon: var(--callout-icon-question);
   }
 
   &[data-callout="warning"] {
-    --color: #db8942;
-    --border: #db894244;
-    --bg: #db894210;
+    --color: var(--callout-warning-color);
+    --border: var(--callout-warning-border); 
+    --bg: var(--callout-warning-bg);
     --callout-icon: var(--callout-icon-warning);
   }
 
   &[data-callout="failure"],
   &[data-callout="danger"],
   &[data-callout="bug"] {
-    --color: #db4242;
-    --border: #db424244;
-    --bg: #db424210;
+    --color: var(--callout-danger-color);
+    --border: var(--callout-danger-border); 
+    --bg: var(--callout-danger-bg);
     --callout-icon: var(--callout-icon-failure);
   }
 
@@ -101,9 +139,9 @@
   }
 
   &[data-callout="example"] {
-    --color: #7a43b5;
-    --border: #7a43b544;
-    --bg: #7a43b510;
+    --color: var(--callout-example-color);
+    --border: var(--callout-example-border); 
+    --bg: var(--callout-example-bg);
     --callout-icon: var(--callout-icon-example);
   }
 

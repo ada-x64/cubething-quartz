@@ -1,3 +1,51 @@
 @use "./base.scss";
 
 @use "./font.scss";
+
+// Fix images in headers
+h1, h2, h3, h4, h5, h6 {
+  display: flex;
+  align-items: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.lilguy-dark, .lilguy-light {
+    margin:0;
+    margin-right: 0.5rem;
+}
+
+html[saved-theme="light"]
+{
+  // ayu.light.vcs.modified
+  --callout-color: #478ACC  !important;
+  // ayu.light.vcs.modified
+  --callout-border: #478ACC !important;
+  // ayu.light.editor.selection.active
+  --callout-bg: #035BD626 !important;
+
+  .lilguy-dark {
+    display: none;
+  }
+  .lilguy-light {
+    display: unset;
+  }
+}
+
+
+html[saved-theme="dark"] {
+  .lilguy-dark {
+    display: unset;
+  }
+  .lilguy-light {
+    display: none;
+  }
+  // ayu.migrage.syntax.constat
+  --callout-color: #DFBFFF !important;
+  // ayu.migrage.editor.findMatch.active
+  --callout-border: #695380 !important;
+  // ayu.migrage.editor.findMatch.inactive
+  --callout-bg: #69538066 !important;
+}

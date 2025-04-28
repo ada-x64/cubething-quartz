@@ -2,7 +2,7 @@ import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 import * as ayu from "ayu"
 
-const colors = (prefix: "light" | "dark" | "mirage") => {
+const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
   return {
     // page bg
     light: ayu[prefix].editor.bg.hex(),
@@ -15,9 +15,10 @@ const colors = (prefix: "light" | "dark" | "mirage") => {
     // header text and icons
     dark: prefix === "light" ? ayu.light.syntax.constant.hex() : ayu[prefix].common.accent.hex(),
     // link colors, current graph node
-    secondary: prefix === "light" ? ayu.light.syntax.constant.hex() : ayu[prefix].syntax.func.hex(),
+    secondary:
+      prefix === "light" ? ayu.light.syntax.constant.hex() : ayu[prefix].common.accent.hex(),
     // hover states and visited graph nodes
-    tertiary: ayu[prefix].syntax.special.hex(),
+    tertiary: prefix === "light" ? ayu.light.syntax.func.hex() : ayu[prefix].syntax.constant.hex(),
     // internal link background, highlighted text, highlighted lines of code
     highlight: ayu[prefix].ui.selection.normal.hex(),
     // markdown highlighted background
@@ -53,13 +54,14 @@ const config: QuartzConfig = {
         code: "Fira Code",
       },
       colors: {
-        lightMode: colors("light"),
-        darkMode: colors("mirage"),
+        lightMode: colors_ayu("light"),
+        darkMode: colors_ayu("mirage"),
       },
     },
   },
   plugins: {
     transformers: [
+      Plugin.LilGuy(),
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "git", "filesystem"],
@@ -77,6 +79,13 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.FigureCaptions(),
+      Plugin.Citations({
+        bibliographyFile: "./content/static/lib.bib",
+        csl: "chicago",
+        linkCitations: true,
+        suppressBibliography: false,
+      }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
