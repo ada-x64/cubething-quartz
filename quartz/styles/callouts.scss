@@ -37,6 +37,9 @@
   --callout-example-color: #7a43b5;
   --callout-example-border: #7a43b544;
   --callout-example-bg: #7a43b510;
+
+  --callout-quote-color: var(--secondary);
+  --callout-quote-border: var(--lightgray);
 }
 
 .callout {
@@ -146,8 +149,8 @@
   }
 
   &[data-callout="quote"] {
-    --color: var(--secondary);
-    --border: var(--lightgray);
+    --color: var(--callout-quote-color);
+    --border: var(--callout-quote-border);
     --callout-icon: var(--callout-icon-quote);
   }
 

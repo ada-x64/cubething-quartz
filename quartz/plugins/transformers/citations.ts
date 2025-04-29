@@ -8,6 +8,7 @@ export interface Options {
   suppressBibliography: boolean
   linkCitations: boolean
   csl: string
+  showTooltips: boolean
 }
 
 const defaultOptions: Options = {
@@ -15,6 +16,7 @@ const defaultOptions: Options = {
   suppressBibliography: false,
   linkCitations: false,
   csl: "apa",
+  showTooltips: false,
 }
 
 export const Citations: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
@@ -33,6 +35,7 @@ export const Citations: QuartzTransformerPlugin<Partial<Options>> = (userOpts) =
           linkCitations: opts.linkCitations,
           csl: opts.csl,
           lang: ctx.cfg.configuration.locale ?? "en-US",
+          showTooltips: opts.showTooltips,
         },
       ])
 

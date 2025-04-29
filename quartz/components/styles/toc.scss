@@ -1,6 +1,7 @@
 @use "../../styles/variables.scss" as *;
 
 .toc {
+  font-family: var(--headerFont);
   display: flex;
   flex-direction: column;
   overflow-y: hidden;

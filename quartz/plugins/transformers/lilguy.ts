@@ -6,7 +6,7 @@ export const lilguyTansformer: QuartzTransformerPlugin = () => {
     textTransform: (ctx, src) => {
       return src.replaceAll(
         /!\[\[(lilguy-\w+)\.gif\]\]/gi,
-        `<img src="/static/lilguy/$1.gif" class="lilguy-light"/><img src="/static/lilguy/$1-dark.gif" class="lilguy-dark"/>`,
+        `<img src="/static/lilguy/$1.gif" class="lilguy light-only"/><img src="/static/lilguy/$1-dark.gif" class="lilguy dark-only"/>`,
       )
     },
   }

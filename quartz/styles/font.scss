@@ -17,7 +17,6 @@
   font-style: normal;
 }
 
-/* Oswald */
 @font-face {
   font-family: 'Synonym';
   src: url('../static/font/Synonym-Regular.woff2') format('woff2'),
@@ -28,8 +27,24 @@
   font-style: normal;
 }
 
-// :root {
-//   --bodyFont: 'Synonym' !important;
-//   --headerFont: 'Chillax' !important;
-//   --codeFont: 'Fira Code' !important;
-// }
+@font-face {
+  font-family: 'Zodiak-Bold';
+  src: url('../static/font/Zodiak-Bold.woff2') format('woff2'),
+       url('../static/font/Zodiak-Bold.woff') format('woff'),
+       url('../static/font/Zodiak-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PlusJakartaSans-Regular';
+  src: url('../static/font/PlusJakartaSans-Regular.woff2') format('woff2'),
+       url('../static/font/PlusJakartaSans-Regular.woff') format('woff'),
+       url('../static/font/PlusJakartaSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+

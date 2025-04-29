@@ -33,7 +33,7 @@ const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "<cubething/>",
+    pageTitle: "cubething",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -49,8 +49,8 @@ const config: QuartzConfig = {
       fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Chillax",
-        body: "Synonym",
+        header: "Zodiak-Bold",
+        body: "PlusJakartaSans-Regular",
         code: "Fira Code",
       },
       colors: {
@@ -82,9 +82,10 @@ const config: QuartzConfig = {
       Plugin.FigureCaptions(),
       Plugin.Citations({
         bibliographyFile: "./content/static/lib.bib",
-        csl: "chicago",
+        csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/chicago-fullnote-bibliography.csl",
         linkCitations: true,
-        suppressBibliography: false,
+        suppressBibliography: true,
+        showTooltips: true,
       }),
     ],
     filters: [Plugin.RemoveDrafts()],

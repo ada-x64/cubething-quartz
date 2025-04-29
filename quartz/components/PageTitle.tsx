@@ -8,7 +8,9 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
   const baseDir = pathToRoot(fileData.slug!)
   return (
     <h2 class={classNames(displayClass, "page-title")}>
-      <a href={baseDir}>{title}</a>
+      <img src="/static/cube-light.gif" class="title-cube light-only" />
+      <img src="/static/cube-dark.gif" class="title-cube dark-only" />
+      <a href={baseDir}>{title} </a>
     </h2>
   )
 }
@@ -19,6 +21,10 @@ PageTitle.css = `
   margin: 0;
   font-family: var(--titleFont);
 }
+  .title-cube {
+    margin:0;
+    margin-right: 0.25em;
+  }
 `
 
 export default (() => PageTitle) satisfies QuartzComponentConstructor
