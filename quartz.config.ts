@@ -1,6 +1,7 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 import * as ayu from "ayu"
+import "dotenv/config"
 
 const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
   return {
@@ -33,6 +34,10 @@ const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
  */
 const config: QuartzConfig = {
   configuration: {
+    baseUrl: process.env["BASE_URL"],
+    contentDirectory: process.env["CONTENT_DIRECTORY"],
+    outputDirectory: process.env["OUTPUT_DIRECTORY"],
+
     pageTitle: "cubething",
     pageTitleSuffix: "",
     enableSPA: true,
@@ -42,7 +47,6 @@ const config: QuartzConfig = {
       siteId: "Y1Jaut4BWsZEgmGjxCFs",
     },
     locale: "en-US",
-    baseUrl: "github.cubething.dev", // TEMP
     ignorePatterns: ["private", "templates", ".obsidian", ".stfolder"],
     defaultDateType: "modified",
     theme: {

@@ -9,6 +9,8 @@ import TableOfContentsFactory from "./TableOfContents"
 import { concatenateResources } from "../util/resources"
 import BacklinksFactory from "./Backlinks"
 import { pathToRoot } from "../util/path"
+import DarkmodeFactory from "./Darkmode"
+import darkmodeScript from "./scripts/darkmode.inline"
 
 interface Options {
   todo: boolean
@@ -22,14 +24,18 @@ export default ((userOpts?: Options) => {
   const Explorer = ExplorerFactory({})
   const TableOfContents = TableOfContentsFactory()
   const Backlinks = BacklinksFactory({ hideWhenEmpty: true })
+  const Darkmode = DarkmodeFactory()
 
   function MobileNav(props: QuartzComponentProps) {
     const baseDir = pathToRoot(props.fileData.slug!)
     const title = (
       <h2 class="page-title move-mobile-nav">
         <a href={baseDir}>{props.cfg.pageTitle} </a>
-        <img src="/static/cube-light.gif" class="cube light-only close-mobile-nav" />
-        <img src="/static/cube-dark.gif" class="cube dark-only close-mobile-nav" />
+        <div class="nav-menu">
+          <Darkmode {...props} />
+          <img src="/static/cube-light.gif" class="cube light-only close-mobile-nav" />
+          <img src="/static/cube-dark.gif" class="cube dark-only close-mobile-nav" />
+        </div>
       </h2>
     )
     const navi = (
@@ -84,6 +90,7 @@ export default ((userOpts?: Options) => {
   }
 
   MobileNav.css = styles
+  MobileNav.beforeDOMLoaded = darkmodeScript
   MobileNav.afterDOMLoaded = concatenateResources(script, explorerScript)
 
   return MobileNav

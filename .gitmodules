@@ -1,3 +1,3 @@
 [submodule "content"]
-	path = content
+	path = content/main
 	url = https://github.com/ada-x64/cubething-quartz-content

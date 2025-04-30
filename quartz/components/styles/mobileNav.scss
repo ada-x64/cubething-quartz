@@ -7,7 +7,7 @@
   transform: translateY(100vh);
   width: 100vw;
   height: calc(100vh + 10px); // for the scroll-up thing
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   overflow: hidden;
 
   .page-title {
@@ -48,7 +48,7 @@
     width: 100%;
   }
 
-  .explorer-toggle{
+  .explorer-toggle {
     display: none;
   }
 
@@ -60,12 +60,31 @@
     margin: 0.5em 0;
     flex-grow: 0;
   }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .darkmode {
+      // Should approximate size of cube
+      width: 2em;
+      height: 2em;
+      margin: 0.5em 0;
+
+      svg {
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: calc(50% - 1em);
+        left: calc(50% - 1em);
+      }
+    }
+  }
 }
 
-
-
 #mobile-nav-btn {
-  position:fixed;
+  position: fixed;
   bottom: 0.5em;
   right: 0.5em;
   z-index: 10;

@@ -14,6 +14,7 @@ export const sharedPageComponents: SharedLayout = {
       bsky: "https://bsky.app/cubething",
       linkedin: "https://linkedin.com/in/ada-mandala",
       resume: "/static/resume.pdf",
+      rss: "/index.xml",
     },
   }),
 }

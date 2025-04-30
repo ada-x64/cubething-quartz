@@ -32,8 +32,6 @@ Content exists separately from the main repo, so I don't have to update the enti
 
 I've set up automatic syncing of content in github actions. The contents of that submodule are private, but this repo is public! This way I can keep my drafts _secret_ 😈
 
-### forthcoming
+### multiple subdomains with environment-based configuration
 
-#### Multiple submodules and environment-based configuration
-
-I would like to have a subdomain for each separate Quartz-based project I write without having to fork this repository every time. Yuck! In order to do that, I intend to use .env files to configure the application depending on the subdomain. These env vars will be configured in CI so that they publish to wherever is required.
+I would like to have a subdomain for each separate Quartz-based project I write without having to fork this repository every time. Yuck! In order to do that, I've set up .env files to configure the application depending on the subdomain. These env vars will be configured in CI so that they publish to wherever is required.
