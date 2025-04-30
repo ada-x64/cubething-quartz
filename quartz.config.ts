@@ -42,7 +42,7 @@ const config: QuartzConfig = {
       siteId: "Y1Jaut4BWsZEgmGjxCFs",
     },
     locale: "en-US",
-    baseUrl: "www.cubething.dev",
+    baseUrl: "github.cubething.dev", // TEMP
     ignorePatterns: ["private", "templates", ".obsidian", ".stfolder"],
     defaultDateType: "modified",
     theme: {
@@ -104,6 +104,7 @@ const config: QuartzConfig = {
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
       Plugin.CustomOgImages(),
+      Plugin.CNAME(),
     ],
   },
 }
