@@ -35,3 +35,17 @@ I've set up automatic syncing of content in github actions. The contents of that
 ### multiple subdomains with environment-based configuration
 
 I would like to have a subdomain for each separate Quartz-based project I write without having to fork this repository every time. Yuck! In order to do that, I've set up .env files to configure the application depending on the subdomain. These env vars will be configured in CI so that they publish to wherever is required.
+
+Local builds are built like this:
+
+```sh
+$ npx dotenvx -f env/.env.local -- npx quartz build --serve
+```
+
+... and .env.local looks like this:
+
+```sh
+BASE_URL="www.cubething.dev"
+CONTENT_DIRECTORY="content.local/main"
+OUTPUT_DIRECTORY="out/local/main/public"
+```
