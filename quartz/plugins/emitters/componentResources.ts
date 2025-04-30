@@ -18,6 +18,7 @@ import {
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
+import { writeFile } from "fs/promises"
 
 type ComponentResources = {
   css: string[]

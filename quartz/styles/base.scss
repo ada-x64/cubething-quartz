@@ -124,16 +124,14 @@ a {
 }
 
 .desktop-only {
-  display: initial;
   @media all and ($mobile) {
     display: none;
   }
 }
 
 .mobile-only {
-  display: none;
-  @media all and ($mobile) {
-    display: initial;
+  @media all and not ($mobile) {
+    display: none;
   }
 }
 

@@ -1,5 +1,5 @@
+@use "./variables.scss" as *;
 @use "./base.scss";
-
 @use "./font.scss";
 
 // Fix images in headers
@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background: linear-gradient(45deg, rgba(0,0,0,0.125), var(--light));
+  background: linear-gradient(45deg, rgba(0,0,0,0.125), transparent);
 }
 
 section {
@@ -32,7 +32,8 @@ section {
   justify-content: center;
 
   img {
-    margin: 0 1em;
+    margin: 0 1rem;
+    max-width: calc(100vw - 2rem)
   }
 }
 
@@ -78,3 +79,33 @@ html[saved-theme="dark"] {
   --callout-quote-border: #695380;
   --callout-quote-bg: #69538066;
 }
+
+.cube {
+  margin:0 0.25em;
+}
+
+@media all and ($mobile) {
+  .cube.title {
+    display: none;
+  }
+ .page>#quartz-body .sidebar.left {
+    display: none;
+    padding: 0;
+    margin: 0;
+  }
+  header {
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  #quartz-body {
+    min-height: 100vh;
+  }
+
+  .breadcrumb-container  {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
