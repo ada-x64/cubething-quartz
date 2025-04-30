@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
+        # Specify which submodules to publish.
         ENV_FILE: [env/.env.main]
     steps:
       - uses: actions/checkout@v4
