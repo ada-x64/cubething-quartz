@@ -51,6 +51,13 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
     allFiles: [],
     incremental: false,
   }
+  /// ADA'S DOTENVX OVERRIDES
+  if (ctx.cfg.configuration.contentDirectory) {
+    argv.directory = ctx.cfg.configuration.contentDirectory
+  }
+  if (ctx.cfg.configuration.outputDirectory) {
+    argv.output = ctx.cfg.configuration.outputDirectory
+  }
 
   const perf = new PerfTimer()
   const output = argv.output

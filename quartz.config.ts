@@ -1,6 +1,9 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 import * as ayu from "ayu"
+import "dotenv/config"
+import { joinSegments } from "./quartz/util/path"
+import { existsSync } from "fs"
 
 const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
   return {
@@ -31,8 +34,22 @@ const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
  *
  * See https://quartz.jzhao.xyz/configuration for more information.
  */
+const bibpath = joinSegments(process.env["CONTENT_DIRECTORY"] ?? "content", "static", "lib.bib")
+const bibplugin = existsSync(bibpath)
+  ? Plugin.Citations({
+      bibliographyFile: bibpath,
+      csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/chicago-fullnote-bibliography.csl",
+      linkCitations: true,
+      suppressBibliography: true,
+      showTooltips: true,
+    })
+  : Plugin.Noop({ warn: "Could not find bibpath! Not bundling citations plugin." })
 const config: QuartzConfig = {
   configuration: {
+    baseUrl: process.env["BASE_URL"],
+    contentDirectory: process.env["CONTENT_DIRECTORY"],
+    outputDirectory: process.env["OUTPUT_DIRECTORY"],
+
     pageTitle: "cubething",
     pageTitleSuffix: "",
     enableSPA: true,
@@ -42,7 +59,6 @@ const config: QuartzConfig = {
       siteId: "Y1Jaut4BWsZEgmGjxCFs",
     },
     locale: "en-US",
-    baseUrl: "github.cubething.dev", // TEMP
     ignorePatterns: ["private", "templates", ".obsidian", ".stfolder"],
     defaultDateType: "modified",
     theme: {
@@ -80,14 +96,7 @@ const config: QuartzConfig = {
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.FigureCaptions(),
-      Plugin.Citations({
-        // TODO: move this to account for correct directory
-        bibliographyFile: "./content/static/lib.bib",
-        csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/chicago-fullnote-bibliography.csl",
-        linkCitations: true,
-        suppressBibliography: true,
-        showTooltips: true,
-      }),
+      bibplugin,
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

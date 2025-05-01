@@ -87,7 +87,7 @@
   &[data-callout="info"],
   &[data-callout="todo"] {
     --color: var(--callout-info-color);
-    --border: var(--callout-info-border); 
+    --border: var(--callout-info-border);
     --bg: var(--callout-info-bg);
     --callout-icon: var(--callout-icon-info);
   }
@@ -98,28 +98,28 @@
 
   &[data-callout="tip"] {
     --color: var(--callout-tip-color);
-    --border: var(--callout-tip-border); 
+    --border: var(--callout-tip-border);
     --bg: var(--callout-tip-bg);
     --callout-icon: var(--callout-icon-tip);
   }
 
   &[data-callout="success"] {
     --color: var(--callout-success-color);
-    --border: var(--callout-success-border); 
+    --border: var(--callout-success-border);
     --bg: var(--callout-success-bg);
     --callout-icon: var(--callout-icon-success);
   }
 
   &[data-callout="question"] {
     --color: var(--callout-question-color);
-    --border: var(--callout-question-border); 
+    --border: var(--callout-question-border);
     --bg: var(--callout-question-bg);
     --callout-icon: var(--callout-icon-question);
   }
 
   &[data-callout="warning"] {
     --color: var(--callout-warning-color);
-    --border: var(--callout-warning-border); 
+    --border: var(--callout-warning-border);
     --bg: var(--callout-warning-bg);
     --callout-icon: var(--callout-icon-warning);
   }
@@ -128,7 +128,7 @@
   &[data-callout="danger"],
   &[data-callout="bug"] {
     --color: var(--callout-danger-color);
-    --border: var(--callout-danger-border); 
+    --border: var(--callout-danger-border);
     --bg: var(--callout-danger-bg);
     --callout-icon: var(--callout-icon-failure);
   }
@@ -143,7 +143,7 @@
 
   &[data-callout="example"] {
     --color: var(--callout-example-color);
-    --border: var(--callout-example-border); 
+    --border: var(--callout-example-border);
     --bg: var(--callout-example-bg);
     --callout-icon: var(--callout-icon-example);
   }

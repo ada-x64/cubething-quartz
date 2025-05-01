@@ -18,7 +18,3 @@ updates:
         applies-to: "version-updates"
         patterns:
           - "*"
-  - package-ecosystem: "gitsubmodule"
-    schedule:
-      interval: "daily"
-    directory: "/"

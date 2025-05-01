@@ -1,50 +1,55 @@
 @font-face {
-  font-family: 'Fira Code';
-  src: url('../static/font/Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.ttf') format('ttf'),
-      url('../static/font/Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf') format('otf');
+  font-family: "Fira Code";
+  src:
+    url("../static/font/Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.ttf")
+      format("ttf"),
+    url("../static/font/Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono\ Windows\ Compatible.otf")
+      format("otf");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Chillax';
-  src: url('../static/font/Chillax-Semibold.woff2') format('woff2'),
-    url('../static/font/Chillax-Semibold.woff') format('woff'),
-    url('../static/font/Chillax-Semibold.ttf') format('truetype');
+  font-family: "Chillax";
+  src:
+    url("../static/font/Chillax-Semibold.woff2") format("woff2"),
+    url("../static/font/Chillax-Semibold.woff") format("woff"),
+    url("../static/font/Chillax-Semibold.ttf") format("truetype");
   font-weight: 600;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Synonym';
-  src: url('../static/font/Synonym-Regular.woff2') format('woff2'),
-    url('../static/font/Synonym-Regular.woff') format('woff'),
-    url('../static/font/Synonym-Regular.ttf') format('truetype');
+  font-family: "Synonym";
+  src:
+    url("../static/font/Synonym-Regular.woff2") format("woff2"),
+    url("../static/font/Synonym-Regular.woff") format("woff"),
+    url("../static/font/Synonym-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Zodiak-Bold';
-  src: url('../static/font/Zodiak-Bold.woff2') format('woff2'),
-       url('../static/font/Zodiak-Bold.woff') format('woff'),
-       url('../static/font/Zodiak-Bold.ttf') format('truetype');
+  font-family: "Zodiak-Bold";
+  src:
+    url("../static/font/Zodiak-Bold.woff2") format("woff2"),
+    url("../static/font/Zodiak-Bold.woff") format("woff"),
+    url("../static/font/Zodiak-Bold.ttf") format("truetype");
   font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'PlusJakartaSans-Regular';
-  src: url('../static/font/PlusJakartaSans-Regular.woff2') format('woff2'),
-       url('../static/font/PlusJakartaSans-Regular.woff') format('woff'),
-       url('../static/font/PlusJakartaSans-Regular.ttf') format('truetype');
+  font-family: "PlusJakartaSans-Regular";
+  src:
+    url("../static/font/PlusJakartaSans-Regular.woff2") format("woff2"),
+    url("../static/font/PlusJakartaSans-Regular.woff") format("woff"),
+    url("../static/font/PlusJakartaSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
-
-

@@ -3,7 +3,12 @@
 @use "./font.scss";
 
 // Fix images in headers
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   display: flex;
   align-items: center;
 
@@ -13,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background: linear-gradient(45deg, rgba(0,0,0,0.125), transparent);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.125), var(--light));
 }
 
 section {
@@ -21,8 +26,8 @@ section {
 }
 
 .lilguy {
-    margin:0;
-    margin-right: 0.5rem;
+  margin: 0;
+  margin-right: 0.5rem;
 }
 
 .repo-links {
@@ -33,24 +38,23 @@ section {
 
   img {
     margin: 0 1rem;
-    max-width: calc(100vw - 2rem)
+    max-width: calc(100vw - 2rem);
   }
 }
 
-html[saved-theme="light"]
-{
+html[saved-theme="light"] {
   // ayu.light.vcs.modified
-  --callout-color: #478ACC;
+  --callout-color: #478acc;
   // ayu.light.vcs.modified
-  --callout-border: #478ACC;
+  --callout-border: #478acc;
   // ayu.light.editor.selection.active
-  --callout-bg: #035BD626;
+  --callout-bg: #035bd626;
   // ayu.light.vcs.modified
-  --callout-quote-color: #478ACC;
+  --callout-quote-color: #478acc;
   // ayu.light.vcs.modified
-  --callout-quote-border: #478ACC;
+  --callout-quote-border: #478acc;
   // ayu.light.editor.selection.active
-  --callout-quote-bg: #035BD626;
+  --callout-quote-bg: #035bd626;
 
   .dark-only {
     display: none !important;
@@ -60,7 +64,6 @@ html[saved-theme="light"]
   // }
 }
 
-
 html[saved-theme="dark"] {
   // .dark-only {
   //   display: unset !important;
@@ -69,26 +72,26 @@ html[saved-theme="dark"] {
     display: none !important;
   }
   // ayu.migrage.syntax.constat
-  --callout-color: #DFBFFF;
+  --callout-color: #dfbfff;
   // ayu.migrage.editor.findMatch.active
   --callout-border: #695380;
   // ayu.migrage.editor.findMatch.inactive
   --callout-bg: #69538066;
 
-  --callout-quote-color: #DFBFFF;
+  --callout-quote-color: #dfbfff;
   --callout-quote-border: #695380;
   --callout-quote-bg: #69538066;
 }
 
 .cube {
-  margin:0 0.25em;
+  margin: 0 0.25em;
 }
 
 @media all and ($mobile) {
   .cube.title {
     display: none;
   }
- .page>#quartz-body .sidebar.left {
+  .page > #quartz-body .sidebar.left {
     display: none;
     padding: 0;
     margin: 0;
@@ -103,9 +106,8 @@ html[saved-theme="dark"] {
     min-height: 100vh;
   }
 
-  .breadcrumb-container  {
+  .breadcrumb-container {
     display: flex;
     flex-wrap: nowrap;
   }
 }
-
