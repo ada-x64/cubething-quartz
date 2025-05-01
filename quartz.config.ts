@@ -81,6 +81,7 @@ const config: QuartzConfig = {
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.FigureCaptions(),
       Plugin.Citations({
+        // TODO: move this to account for correct directory
         bibliographyFile: "./content/static/lib.bib",
         csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/chicago-fullnote-bibliography.csl",
         linkCitations: true,

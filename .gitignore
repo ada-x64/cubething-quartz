@@ -11,4 +11,6 @@ private/
 replit.nix
 .obsidian
 .stfolder
-content.local
+*.local
+.env.keys
+out
