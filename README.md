@@ -49,3 +49,5 @@ BASE_URL="www.cubething.dev"
 CONTENT_DIRECTORY="content.local/main"
 OUTPUT_DIRECTORY="out/local/main/public"
 ```
+
+Every submodule will need to be set up with a deploy key _per subdomain_. So if I have subdomains `www` and `example`, then I would need to add a deploy key for `www.site.com` and `example.site.com` to _both_ the `www` submodule and `example` submodule.
