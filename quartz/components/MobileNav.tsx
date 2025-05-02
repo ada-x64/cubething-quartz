@@ -10,6 +10,7 @@ import { concatenateResources } from "../util/resources"
 import BacklinksFactory from "./Backlinks"
 import { pathToRoot } from "../util/path"
 import DarkmodeFactory from "./Darkmode"
+//@ts-ignore
 import darkmodeScript from "./scripts/darkmode.inline"
 
 interface Options {
@@ -90,8 +91,8 @@ export default ((userOpts?: Options) => {
   }
 
   MobileNav.css = styles
-  MobileNav.beforeDOMLoaded = darkmodeScript
-  MobileNav.afterDOMLoaded = concatenateResources(script, explorerScript)
+  // MobileNav.beforeDOMLoaded = darkmodeScript
+  MobileNav.afterDOMLoaded = script //concatenateResources(script, explorerScript, )
 
   return MobileNav
 }) satisfies QuartzComponentConstructor
