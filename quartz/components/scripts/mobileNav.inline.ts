@@ -1,6 +1,3 @@
-import { v8_0_0 } from "pixi.js"
-import { eventNames } from "process"
-
 // ON DOM LOADED
 const mobileNavBtn = document.querySelector("#mobile-nav-btn")! as HTMLDivElement
 const mobileNavWrapper = document.querySelector("#mobile-nav-wrapper")! as HTMLDivElement
@@ -40,7 +37,6 @@ mobileNavWrapper.addEventListener("touchstart", (ev) => {
   if (!target.classList.contains("move-mobile-nav")) {
     return
   }
-  console.log("touchstart")
   window.mousedown = true
   window.touchY = 0
   window.initialTouchY = 0
@@ -51,7 +47,6 @@ mobileNavWrapper.addEventListener("touchend", (ev) => {
   if (!target.classList.contains("move-mobile-nav")) {
     return
   }
-  console.log("touchend")
   window.mousedown = false
   if (mobileNavWrapper.classList.contains("open") && window.touchY >= 100) {
     closeMobileNav()
@@ -69,7 +64,6 @@ mobileNavWrapper.addEventListener("touchmove", (ev) => {
       window.initialTouchY = newY
     }
     window.touchY = Math.max(-10, newY - window.initialTouchY)
-    console.log(window.initialTouchY, newY, window.touchY)
     mobileNavWrapper.style.setProperty("transform", `translateY(${parseFloat(window.touchY)}px)`)
   }
 })

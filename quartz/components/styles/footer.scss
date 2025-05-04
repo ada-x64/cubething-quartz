@@ -10,6 +10,53 @@ footer {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    margin-top: -1rem;
+    margin-top:0; 
   }
+
+
+}
+
+#tinylytics {
+  display: flex;
+  column-gap: 0.5em;
+  font-size:0.8em;
+}
+
+.tinylytics_kudos {
+  background: var(--highlight);
+    border: none;
+    // padding: 0.5em 1em;
+    border-radius: 0.5em;
+    color: var(--secondary);
+    font-weight: bold;
+
+    &:not(.did_select):hover {
+      background: var(--light);
+      color: var(--tertiary);
+      cursor: pointer;
+    }
+    &.did_select {
+      background: var(--lightgray);
+      color: var(--dark)
+    }
+    &.did_select::before {
+      content: "( thank you! )>";
+      // font-weight: bolder;
+      font-size: 0.7em;
+    }
+
+}
+
+#credits {
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: end;
+  column-gap: 2em;
+  row-gap: 1em;
 }

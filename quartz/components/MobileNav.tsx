@@ -6,7 +6,6 @@ import script from "./scripts/mobileNav.inline"
 import explorerScript from "./scripts/explorer.inline"
 import ExplorerFactory from "./Explorer"
 import TableOfContentsFactory from "./TableOfContents"
-import { concatenateResources } from "../util/resources"
 import BacklinksFactory from "./Backlinks"
 import { pathToRoot } from "../util/path"
 import DarkmodeFactory from "./Darkmode"
@@ -42,7 +41,7 @@ export default ((userOpts?: Options) => {
     const navi = (
       <>
         <hr />
-        <h3>Pages</h3>
+        <h3 class="move-mobile-nav">Pages</h3>
         <Explorer {...props}></Explorer>
       </>
     )
@@ -79,7 +78,7 @@ export default ((userOpts?: Options) => {
           class={`closed close-mobile-nav ${props.displayClass}`}
           tabindex={-1}
         >
-          <div id="mobile-nav-inner" class="inner">
+          <div id="mobile-nav-inner" class="inner move-mobile-nav">
             {title}
             {navi}
             {toc}
