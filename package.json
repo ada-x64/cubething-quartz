@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.10.1",
-    "@floating-ui/dom": "^1.6.13",
-    "@myriaddreamin/rehype-typst": "^0.5.4",
+    "@floating-ui/dom": "^1.7.0",
+    "@myriaddreamin/rehype-typst": "^0.6.0",
     "@napi-rs/simple-git": "0.1.19",
     "@tweenjs/tween.js": "^25.0.0",
     "@webgpu/types": "^0.1.60",
@@ -100,11 +100,11 @@
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.3",
     "workerpool": "^9.2.0",
-    "ws": "^8.18.1",
+    "ws": "^8.18.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.42.0",
+    "@dotenvx/dotenvx": "^1.43.0",
     "@types/d3": "^7.4.3",
     "@types/hast": "^3.0.4",
     "@types/js-yaml": "^4.0.9",
