@@ -60,7 +60,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     ignorePatterns: ["private", "templates", ".obsidian", ".stfolder"],
-    defaultDateType: "modified",
+    defaultDateType: "published",
     theme: {
       fontOrigin: "local",
       cdnCaching: true,
