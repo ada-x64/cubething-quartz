@@ -111,7 +111,6 @@ async function startWatching(
   clientRefresh: () => void,
 ) {
   const { argv, allFiles } = ctx
-  console.log("watching", allFiles)
 
   const contentMap: ContentMap = new Map()
   for (const filePath of allFiles) {
