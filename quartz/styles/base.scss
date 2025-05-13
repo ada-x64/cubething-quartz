@@ -614,22 +614,3 @@ iframe.pdf {
   transition: width 0.2s ease;
   z-index: 9999;
 }
-
-// ========== Image captions ==========
-
-figure {
-  margin: 0;
-
-  > img {
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-figcaption {
-  text-align: center;
-  margin-top: 0.25rem;
-  font-size: 0.85rem;
-  line-height: 1.3rem;
-  opacity: 0.8;
-}

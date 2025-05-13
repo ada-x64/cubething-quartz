@@ -1,0 +1,46 @@
+figure {
+  > img {
+    display: block;
+    margin: 0 auto;
+  }
+
+}
+
+.style-dependent-image-wrapper {
+  a.internal {
+    background: inherit;
+    padding: unset;
+    color: unset;
+    line-height: unset;
+    border-radius: unset;
+  }
+  img {
+    max-height: 75vh;
+  }
+}
+
+
+figcaption {
+  text-align: center;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  line-height: 1.3rem;
+  opacity: 0.8;
+}
+
+.lilguy {
+  margin: 0;
+  margin-right: 0.5rem;
+  max-width: 32px;
+  max-height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+
+  img {
+    margin: 0;
+  }
+}
+
+code {
+  max-height: 50vh;
+}
