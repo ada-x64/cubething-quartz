@@ -111,6 +111,7 @@ async function startWatching(
   clientRefresh: () => void,
 ) {
   const { argv, allFiles } = ctx
+  console.log("watching", allFiles)
 
   const contentMap: ContentMap = new Map()
   for (const filePath of allFiles) {
@@ -152,6 +153,8 @@ async function startWatching(
     persistent: true,
     cwd: argv.directory,
     ignoreInitial: true,
+    followSymlinks: true,
+    usePolling: true, // necessary to track across WSL boundary (network)
   })
 
   const changes: ChangeEvent[] = []

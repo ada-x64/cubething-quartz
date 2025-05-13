@@ -29,6 +29,14 @@ section {
 .lilguy {
   margin: 0;
   margin-right: 0.5rem;
+  max-width: 32px;
+  max-height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+
+  img {
+    margin: 0;
+  }
 }
 
 .repo-links {
@@ -110,4 +118,8 @@ html[saved-theme="dark"] {
   .breadcrumb-container {
     display: flex;
   }
+}
+
+code {
+  max-height: 50vh;
 }

@@ -77,8 +77,8 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
-      Plugin.LilGuy(),
       Plugin.FrontMatter(),
+      Plugin.StyleDependentFigures(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "git", "filesystem"],
       }),
@@ -95,7 +95,6 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
-      Plugin.FigureCaptions(),
       bibplugin,
     ],
     filters: [Plugin.RemoveDrafts()],
@@ -112,8 +111,7 @@ const config: QuartzConfig = {
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      process.env["DEV"] === "true" ? Plugin.NoopEmitter() : Plugin.CustomOgImages(),
       Plugin.CNAME(),
     ],
   },
