@@ -154,7 +154,7 @@ async function startWatching(
     cwd: argv.directory,
     ignoreInitial: true,
     followSymlinks: true,
-    usePolling: true, // necessary to track across WSL boundary (network)
+    usePolling: process.env["USE_POLLING"] === "true", // necessary to track across WSL boundary (network)
   })
 
   const changes: ChangeEvent[] = []

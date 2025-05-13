@@ -1,6 +1,7 @@
 @use "./variables.scss" as *;
 @use "./base.scss";
 @use "./font.scss";
+@use "./figs.scss";
 
 // Fix images in headers
 h1,
@@ -26,18 +27,6 @@ section {
   background: none;
 }
 
-.lilguy {
-  margin: 0;
-  margin-right: 0.5rem;
-  max-width: 32px;
-  max-height: 32px;
-  min-width: 32px;
-  min-height: 32px;
-
-  img {
-    margin: 0;
-  }
-}
 
 .repo-links {
   display: flex;
@@ -68,15 +57,9 @@ html[saved-theme="light"] {
   .dark-only {
     display: none !important;
   }
-  // .light-only {
-  //   display: unset !important;
-  // }
 }
 
 html[saved-theme="dark"] {
-  // .dark-only {
-  //   display: unset !important;
-  // }
   .light-only {
     display: none !important;
   }
@@ -118,8 +101,4 @@ html[saved-theme="dark"] {
   .breadcrumb-container {
     display: flex;
   }
-}
-
-code {
-  max-height: 50vh;
 }
