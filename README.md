@@ -12,6 +12,13 @@ I've grown quite tired of maintaining both the front-end and the content. If I'm
 
 Quartz has a lot of features and a nice plugin system! I've added a few.
 
+### Style-dependent figures
+
+Figures with captions. This creates figures with optional captions and links to the full image. If there is a similar image with the -dark postfix, then this plugin will automatically create a light-only and dark-only version of the figure.
+
+![style-dependent image (light mode)](./.readme/sdf.png)
+![style-dependent image (dark mode)](./.readme/sdf-dark.png)
+
 ### lilguys
 
 The lilguy transformer plugin lets me add a gif of a lilguy in obsidian, which will then be replaced with a version appropriate to the current color scheme.
