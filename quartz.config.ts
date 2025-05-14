@@ -22,10 +22,12 @@ const colors_ayu = (prefix: "light" | "dark" | "mirage") => {
       prefix === "light" ? ayu.light.syntax.constant.hex() : ayu[prefix].common.accent.hex(),
     // hover states and visited graph nodes
     tertiary: prefix === "light" ? ayu.light.syntax.func.hex() : ayu[prefix].syntax.constant.hex(),
-    // internal link background, highlighted text, highlighted lines of code
+    // internal link background, highlighted text
     highlight: ayu[prefix].ui.selection.normal.hex(),
     // markdown highlighted background
     textHighlight: ayu[prefix].ui.selection.active.hex(),
+    // highlighted lines of code
+    codeHighlight: ayu[prefix].editor.findMatch.inactive.hex(),
   }
 }
 
@@ -97,7 +99,7 @@ const config: QuartzConfig = {
       Plugin.Latex({ renderEngine: "katex" }),
       bibplugin,
     ],
-    filters: [Plugin.RemoveDrafts()],
+    filters: [Plugin.RemoveDrafts(), Plugin.Scheduled()],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),

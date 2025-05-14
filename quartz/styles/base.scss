@@ -443,7 +443,7 @@ pre {
     overflow-x: auto;
 
     & [data-highlighted-chars] {
-      background-color: var(--highlight);
+      background-color: var(--codeHighlight);
       border-radius: 5px;
     }
 
@@ -453,7 +453,7 @@ pre {
       border-left: 3px solid transparent;
 
       &[data-highlighted-line] {
-        background-color: var(--highlight);
+        background-color: var(--codeHighlight);
         border-left: 3px solid var(--secondary);
       }
 
