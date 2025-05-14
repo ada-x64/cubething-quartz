@@ -99,7 +99,10 @@ const config: QuartzConfig = {
       Plugin.Latex({ renderEngine: "katex" }),
       bibplugin,
     ],
-    filters: [Plugin.RemoveDrafts(), Plugin.Scheduled()],
+    filters: [
+      Plugin.RemoveDrafts(),
+      process.env["NO_SCHEDULER"] === "true" ? Plugin.NoopFilter() : Plugin.Scheduled(),
+    ],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
@@ -113,7 +116,7 @@ const config: QuartzConfig = {
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.NotFoundPage(),
-      process.env["DEV"] === "true"
+      process.env["NO_OG"] === "true"
         ? Plugin.NoopEmitter()
         : Plugin.CustomOgImages({ colorScheme: "darkMode" }),
       Plugin.CNAME(),

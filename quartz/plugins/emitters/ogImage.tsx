@@ -39,7 +39,7 @@ async function generateSocialImage(
     console.warn(chalk.yellow(`Warning: Could not find icon at ${iconPath}`))
   }
 
-  const imageComponent = userOpts.imageStructure({
+  const imageComponent = await userOpts.imageStructure({
     cfg,
     userOpts,
     title,

@@ -11,6 +11,8 @@ import readingTime from "reading-time"
 import { i18n } from "../i18n"
 import chalk from "chalk"
 import chroma from "chroma-js"
+import { imageSizeFromFile } from "image-size/fromFile"
+import { ISizeCalculationResult } from "image-size/dist/types/interface"
 
 const defaultHeaderWeight = [700]
 const defaultBodyWeight = [400]
@@ -174,7 +176,7 @@ export type SocialImageOptions = {
       userOpts: UserOpts
       iconBase64?: string
     },
-  ) => JSXInternal.Element
+  ) => Promise<JSXInternal.Element>
 }
 
 export type UserOpts = Omit<SocialImageOptions, "imageStructure">
@@ -203,7 +205,7 @@ export type ImageOptions = {
 }
 
 // This is the default template for generated social image.
-export const defaultImage: SocialImageOptions["imageStructure"] = ({
+export const defaultImage: SocialImageOptions["imageStructure"] = async ({
   cfg,
   userOpts,
   title,
@@ -232,6 +234,11 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
 
   // get hero image
   let userDefinedOgImagePath = fileData.frontmatter?.socialImage
+  let bgImgSize: ISizeCalculationResult = { width: userOpts.width, height: userOpts.height }
+  if (userDefinedOgImagePath) {
+    const rp = path.resolve(`${cfg.contentDirectory}/${userDefinedOgImagePath}`)
+    bgImgSize = await imageSizeFromFile(rp)
+  }
   if (userDefinedOgImagePath) {
     userDefinedOgImagePath = isAbsoluteURL(userDefinedOgImagePath)
       ? userDefinedOgImagePath
@@ -298,7 +305,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
         alignItems: "center",
       }}
     >
-      <img src={userDefinedOgImagePath} />
+      <img src={userDefinedOgImagePath} width={bgImgSize.width} height={bgImgSize.height} />
     </div>
   ) : (
     <></>
