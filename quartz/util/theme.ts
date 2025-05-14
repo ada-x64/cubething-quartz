@@ -8,6 +8,7 @@ export interface ColorScheme {
   tertiary: string
   highlight: string
   textHighlight: string
+  codeHighlight: string
 }
 
 interface Colors {
@@ -145,6 +146,7 @@ ${stylesheet.join("\n\n")}
   --tertiary: ${theme.colors.lightMode.tertiary};
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
+  --codeHighlight: ${theme.colors.lightMode.codeHighlight};
 
   --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
@@ -162,6 +164,7 @@ ${stylesheet.join("\n\n")}
   --tertiary: ${theme.colors.darkMode.tertiary};
   --highlight: ${theme.colors.darkMode.highlight};
   --textHighlight: ${theme.colors.darkMode.textHighlight};
+  --codeHighlight: ${theme.colors.darkMode.codeHighlight};
 }
 `
 }
