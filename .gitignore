@@ -15,3 +15,5 @@ replit.nix
 .env.keys
 out
 .envrc
+# Local Netlify folder
+.netlify
