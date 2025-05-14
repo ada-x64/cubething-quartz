@@ -113,7 +113,9 @@ const config: QuartzConfig = {
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.NotFoundPage(),
-      process.env["DEV"] === "true" ? Plugin.NoopEmitter() : Plugin.CustomOgImages(),
+      process.env["DEV"] === "true"
+        ? Plugin.NoopEmitter()
+        : Plugin.CustomOgImages({ colorScheme: "darkMode" }),
       Plugin.CNAME(),
     ],
   },

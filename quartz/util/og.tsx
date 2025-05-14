@@ -5,11 +5,12 @@ import { QuartzPluginData } from "../plugins/vfile"
 import { JSXInternal } from "preact/src/jsx"
 import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
 import path from "path"
-import { joinSegments, QUARTZ } from "./path"
+import { isAbsoluteURL, joinSegments, QUARTZ } from "./path"
 import { formatDate, getDate } from "../components/Date"
 import readingTime from "reading-time"
 import { i18n } from "../i18n"
 import chalk from "chalk"
+import chroma from "chroma-js"
 
 const defaultHeaderWeight = [700]
 const defaultBodyWeight = [400]
@@ -32,15 +33,15 @@ const customFonts: SatoriOptions["fonts"] = [
     style: "normal" as const,
   },
   {
-    name: "Synonym",
-    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Synonym-Regular.ttf")),
+    name: "PlusJakartaSans-Regular",
+    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "PlusJakartaSans-Regular.ttf")),
     weight: 400,
     style: "normal" as const,
   },
   {
-    name: "Chillax",
-    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Chillax-Semibold.ttf")),
-    weight: 600,
+    name: "Zodiak-Bold",
+    data: await getFontPath(joinSegments(QUARTZ, "static", "font", "Zodiak-Bold.ttf")),
+    weight: 700,
     style: "normal" as const,
   },
 ]
@@ -229,122 +230,210 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
   const bodyFont = getFontSpecificationName(cfg.theme.typography.body)
   const headerFont = getFontSpecificationName(cfg.theme.typography.header)
 
-  return (
+  // get hero image
+  let userDefinedOgImagePath = fileData.frontmatter?.socialImage
+  if (userDefinedOgImagePath) {
+    userDefinedOgImagePath = isAbsoluteURL(userDefinedOgImagePath)
+      ? userDefinedOgImagePath
+      : `https://${cfg.baseUrl}/${userDefinedOgImagePath}`
+  }
+
+  let fontSize = userDefinedOgImagePath ? 48 : useSmallerFont ? 64 : 72
+  const titleOverrides = userDefinedOgImagePath
+    ? {
+        marginTop: "0",
+        marginBottom: "0",
+      }
+    : {}
+  const titleSection = (
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        width: "100%",
-        backgroundColor: cfg.theme.colors[colorScheme].light,
-        padding: "2.5rem",
-        fontFamily: bodyFont,
+        marginTop: "1rem",
+        marginBottom: "1.5rem",
+        ...titleOverrides,
       }}
     >
-      {/* Header Section */}
-      <div
+      <h1
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          marginBottom: "0.5rem",
+          margin: 0,
+          fontSize,
+          fontFamily: headerFont,
+          fontWeight: 700,
+          color: cfg.theme.colors[colorScheme].dark,
+          lineHeight: 1.2,
+          display: "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: 2,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         }}
       >
-        {iconBase64 && (
-          <img
-            src={iconBase64}
-            width={56}
-            height={56}
-            style={{
-              borderRadius: "50%",
-            }}
-          />
-        )}
-        <div
-          style={{
-            display: "flex",
-            fontSize: 32,
-            color: cfg.theme.colors[colorScheme].gray,
-            fontFamily: bodyFont,
-          }}
-        >
-          {cfg.baseUrl}
-        </div>
-      </div>
+        {title}
+      </h1>
+    </div>
+  )
 
-      {/* Title Section */}
-      <div
-        style={{
-          display: "flex",
-          marginTop: "1rem",
-          marginBottom: "1.5rem",
-        }}
-      >
-        <h1
-          style={{
-            margin: 0,
-            fontSize: useSmallerFont ? 64 : 72,
-            fontFamily: headerFont,
-            fontWeight: 700,
-            color: cfg.theme.colors[colorScheme].dark,
-            lineHeight: 1.2,
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 2,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {title}
-        </h1>
-      </div>
+  const mainStyleOverrides = userDefinedOgImagePath
+    ? {
+        padding: "0",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        background: "transparent",
+      }
+    : {}
 
-      {/* Description Section */}
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          fontSize: 36,
-          color: cfg.theme.colors[colorScheme].darkgray,
-          lineHeight: 1.4,
-        }}
-      >
-        <p
-          style={{
-            margin: 0,
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 5,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {description}
-        </p>
-      </div>
+  const bgImg = userDefinedOgImagePath ? (
+    <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        backgroundColor: cfg.theme.colors[colorScheme].light,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <img src={userDefinedOgImagePath} />
+    </div>
+  ) : (
+    <></>
+  )
 
-      {/* Footer with Metadata */}
+  const background = userDefinedOgImagePath
+    ? {
+        background: chroma
+          .mix(cfg.theme.colors[colorScheme].light, chroma.rgb(0, 0, 0, 0), 0.2)
+          .hex(),
+      }
+    : {}
+
+  return (
+    <div style={{ display: "flex", width: "100%", height: "100%" }}>
+      {bgImg}
       <div
         style={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginTop: "2rem",
-          paddingTop: "2rem",
-          borderTop: `1px solid ${cfg.theme.colors[colorScheme].lightgray}`,
+          flexDirection: "column",
+          height: "100%",
+          width: "100%",
+          backgroundColor: cfg.theme.colors[colorScheme].light,
+          padding: "2.5rem",
+          fontFamily: bodyFont,
+          ...mainStyleOverrides,
         }}
       >
-        {/* Left side - Date and Reading Time */}
+        {/* Header Section */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
-            color: cfg.theme.colors[colorScheme].gray,
-            fontSize: 28,
+            justifyContent: "space-between",
+            padding: userDefinedOgImagePath ? "2.5rem" : "0",
+            gap: "1rem",
+            marginBottom: "0.5rem",
+            ...background,
           }}
         >
-          {date && (
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            {iconBase64 && (
+              <img
+                src={iconBase64}
+                width={56}
+                height={56}
+                style={{
+                  borderRadius: "50%",
+                }}
+              />
+            )}
+            <div
+              style={{
+                display: "flex",
+                fontSize: 32,
+                color: cfg.theme.colors[colorScheme].gray,
+                fontFamily: bodyFont,
+              }}
+            >
+              {cfg.baseUrl}
+            </div>
+          </div>
+          {userDefinedOgImagePath && titleSection}
+        </div>
+
+        {/* Title Section */}
+        {!userDefinedOgImagePath && titleSection}
+
+        {/* Description Section */}
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            fontSize: 36,
+            color: cfg.theme.colors[colorScheme].darkgray,
+            lineHeight: 1.4,
+          }}
+        >
+          {!userDefinedOgImagePath && (
+            <p
+              style={{
+                margin: 0,
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 5,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {description}
+            </p>
+          )}
+        </div>
+
+        {/* Footer with Metadata */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "2rem",
+            padding: userDefinedOgImagePath ? "2.5rem" : "0",
+            paddingTop: "2rem",
+            borderTop: `1px solid ${cfg.theme.colors[colorScheme].lightgray}`,
+            ...background,
+          }}
+        >
+          {/* Left side - Date and Reading Time */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "2rem",
+              color: cfg.theme.colors[colorScheme].gray,
+              fontSize: 28,
+            }}
+          >
+            {date && (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <svg
+                  style={{ marginRight: "0.5rem" }}
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                {date}
+              </div>
+            )}
             <div style={{ display: "flex", alignItems: "center" }}>
               <svg
                 style={{ marginRight: "0.5rem" }}
@@ -354,54 +443,38 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
                 fill="none"
                 stroke="currentColor"
               >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
-              {date}
+              {readingTimeText}
             </div>
-          )}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <svg
-              style={{ marginRight: "0.5rem" }}
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            {readingTimeText}
           </div>
-        </div>
 
-        {/* Right side - Tags */}
-        <div
-          style={{
-            display: "flex",
-            gap: "0.5rem",
-            flexWrap: "wrap",
-            justifyContent: "flex-end",
-            maxWidth: "60%",
-          }}
-        >
-          {tags.slice(0, 3).map((tag: string) => (
-            <div
-              style={{
-                display: "flex",
-                padding: "0.5rem 1rem",
-                backgroundColor: cfg.theme.colors[colorScheme].highlight,
-                color: cfg.theme.colors[colorScheme].secondary,
-                borderRadius: "10px",
-                fontSize: 24,
-              }}
-            >
-              #{tag}
-            </div>
-          ))}
+          {/* Right side - Tags */}
+          <div
+            style={{
+              display: "flex",
+              gap: "0.5rem",
+              flexWrap: "wrap",
+              justifyContent: "flex-end",
+              maxWidth: "60%",
+            }}
+          >
+            {tags.slice(0, 3).map((tag: string) => (
+              <div
+                style={{
+                  display: "flex",
+                  padding: "0.5rem 1rem",
+                  backgroundColor: cfg.theme.colors[colorScheme].highlight,
+                  color: cfg.theme.colors[colorScheme].secondary,
+                  borderRadius: "10px",
+                  fontSize: 24,
+                }}
+              >
+                #{tag}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
