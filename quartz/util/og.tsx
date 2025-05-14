@@ -3,7 +3,7 @@ import { FontWeight, SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzPluginData } from "../plugins/vfile"
 import { JSXInternal } from "preact/src/jsx"
-import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
+import { FontSpecification, getFontSpecificationName, processGoogleFonts, ThemeKey } from "./theme"
 import path from "path"
 import { isAbsoluteURL, joinSegments, QUARTZ } from "./path"
 import { formatDate, getDate } from "../components/Date"
@@ -213,6 +213,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
   fileData,
   iconBase64,
 }) => {
+  const DEBUG = process.env["DEBUG_OG"]
   const { colorScheme } = userOpts
   const fontBreakPoint = 32
   const useSmallerFont = title.length > fontBreakPoint
@@ -237,7 +238,13 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
   let bgImgSize: ISizeCalculationResult = { width: userOpts.width, height: userOpts.height }
   if (userDefinedOgImagePath) {
     const rp = path.resolve(`${cfg.contentDirectory}/${userDefinedOgImagePath}`)
-    bgImgSize = await imageSizeFromFile(rp)
+    const calculatedSize = await imageSizeFromFile(rp)
+    if (calculatedSize.width > userOpts.width) {
+      bgImgSize.width = calculatedSize.width
+    }
+    if (calculatedSize.height > userOpts.height) {
+      bgImgSize.height = calculatedSize.height
+    }
   }
   if (userDefinedOgImagePath) {
     userDefinedOgImagePath = isAbsoluteURL(userDefinedOgImagePath)
@@ -245,7 +252,9 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
       : `https://${cfg.baseUrl}/${userDefinedOgImagePath}`
   }
 
-  let fontSize = userDefinedOgImagePath ? 48 : useSmallerFont ? 64 : 72
+  const normalFont = userDefinedOgImagePath ? 48 : 72
+  const smallerFont = userDefinedOgImagePath ? 32 : 64
+  const fontSize = useSmallerFont ? smallerFont : normalFont
   const titleOverrides = userDefinedOgImagePath
     ? {
         marginTop: "0",
@@ -258,6 +267,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
         display: "flex",
         marginTop: "1rem",
         marginBottom: "1.5rem",
+        border: DEBUG ? "1px solid yellow" : "0px",
         ...titleOverrides,
       }}
     >
@@ -269,11 +279,9 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
           fontWeight: 700,
           color: cfg.theme.colors[colorScheme].dark,
           lineHeight: 1.2,
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: 2,
-          overflow: "hidden",
           textOverflow: "ellipsis",
+          textWrap: "wrap",
+          border: DEBUG ? "1px solid red" : "0px",
         }}
       >
         {title}
@@ -331,6 +339,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
           backgroundColor: cfg.theme.colors[colorScheme].light,
           padding: "2.5rem",
           fontFamily: bodyFont,
+          border: DEBUG ? "1px solid blue" : "0px",
           ...mainStyleOverrides,
         }}
       >
@@ -343,10 +352,19 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
             padding: userDefinedOgImagePath ? "2.5rem" : "0",
             gap: "1rem",
             marginBottom: "0.5rem",
+            width: "100%",
+            border: DEBUG ? "1px solid green" : "0px",
             ...background,
           }}
         >
-          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              alignItems: "center",
+              border: DEBUG ? "1px solid yellow" : "0px",
+            }}
+          >
             {iconBase64 && (
               <img
                 src={iconBase64}
@@ -363,6 +381,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
                 fontSize: 32,
                 color: cfg.theme.colors[colorScheme].gray,
                 fontFamily: bodyFont,
+                border: DEBUG ? "1px solid red" : "0px",
               }}
             >
               {cfg.baseUrl}
