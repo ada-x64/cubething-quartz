@@ -19,6 +19,13 @@ Figures with captions. This creates figures with optional captions and links to 
 ![style-dependent image (light mode)](./.readme/sdf.png)
 ![style-dependent image (dark mode)](./.readme/sdf-dark.png)
 
+### opengraph previews with hero images
+
+If there is a cover image specified in the frontmatter, add it as the _background_ of the otherwise similar opengraph preview image.
+
+![with hero image](./.readme/hero-preview.webp)
+![without hero image](./.readme/no-hero.webp)
+
 ### lilguys
 
 The lilguy transformer plugin lets me add a gif of a lilguy in obsidian, which will then be replaced with a version appropriate to the current color scheme.
