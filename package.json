@@ -58,6 +58,7 @@
     "hast-util-to-html": "^9.0.5",
     "hast-util-to-jsx-runtime": "^2.3.6",
     "hast-util-to-string": "^3.0.1",
+    "image-size": "^2.0.2",
     "is-absolute-url": "^4.0.1",
     "js-yaml": "^4.1.0",
     "lightningcss": "^1.30.0",
