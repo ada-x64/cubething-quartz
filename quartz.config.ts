@@ -40,9 +40,9 @@ const bibpath = joinSegments(process.env["CONTENT_DIRECTORY"] ?? "content", "sta
 const bibplugin = existsSync(bibpath)
   ? Plugin.Citations({
       bibliographyFile: bibpath,
-      csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/chicago-fullnote-bibliography.csl",
+      csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/chicago-author-date.csl",
       linkCitations: true,
-      suppressBibliography: true,
+      suppressBibliography: false,
       showTooltips: true,
     })
   : Plugin.Noop({ warn: "Could not find bibpath! Not bundling citations plugin." })
@@ -61,7 +61,7 @@ const config: QuartzConfig = {
       siteId: "Y1Jaut4BWsZEgmGjxCFs",
     },
     locale: "en-US",
-    ignorePatterns: ["private", "templates", ".obsidian", ".stfolder"],
+    ignorePatterns: ["private", "templates", ".obsidian", ".stfolder", ".git"],
     defaultDateType: "published",
     theme: {
       fontOrigin: "local",
@@ -100,7 +100,7 @@ const config: QuartzConfig = {
       bibplugin,
     ],
     filters: [
-      Plugin.RemoveDrafts(),
+      process.env["SHOW_DRAFTS"] === "true" ? Plugin.NoopFilter() : Plugin.RemoveDrafts(),
       process.env["NO_SCHEDULER"] === "true" ? Plugin.NoopFilter() : Plugin.Scheduled(),
     ],
     emitters: [
