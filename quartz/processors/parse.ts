@@ -112,6 +112,7 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
           console.log(`[markdown] ${fp} -> ${file.data.slug} (${perf.timeSince()})`)
         }
       } catch (err) {
+        debugger
         trace(`\nFailed to process markdown \`${fp}\``, err as Error)
       }
     }
@@ -134,6 +135,7 @@ export function createMarkdownParser(ctx: BuildCtx, mdContent: MarkdownContent[]
           console.log(`[html] ${file.data.slug} (${perf.timeSince()})`)
         }
       } catch (err) {
+        debugger
         trace(`\nFailed to process html \`${file.data.filePath}\``, err as Error)
       }
     }
