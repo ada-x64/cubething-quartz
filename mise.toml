@@ -1,0 +1,10 @@
+[env]
+MAIN_DOTENV = "env/main.env"
+EXAMPLE_DOTENV = "env/example.env"
+
+[tools]
+node = "22.15.0"
+
+[tasks]
+deploy_main = 'npx dotenvx run -f $MAIN_DOTENV -- npx quartz build'
+deploy_example = 'npx dotenvx run -f $EXAMPLE_DOTENV -- npx quartz build'
