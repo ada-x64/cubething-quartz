@@ -1,0 +1,3 @@
+# This file keeps the data directory in git
+# The actual comments.json file will be created dynamically by the Netlify functions
+# You may want to add comments.json to .gitignore if you don't want comments stored in your repository

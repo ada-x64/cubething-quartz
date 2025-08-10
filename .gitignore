@@ -17,3 +17,6 @@ out
 .envrc
 # Local Netlify folder
 .netlify
+
+# Comments data (optional - remove if you want comments stored in repo)
+data/comments.json

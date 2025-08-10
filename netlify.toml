@@ -1,0 +1,70 @@
+[build]
+publish = "public"
+functions = "netlify/functions"
+
+[build.processing]
+skip_processing = false
+
+[build.processing.css]
+bundle = true
+minify = true
+
+[build.processing.js]
+bundle = true
+minify = true
+
+[build.processing.html]
+pretty_urls = true
+
+# Form handling
+[[plugins]]
+package = "@netlify/functions"
+
+# Redirect for comment form submissions
+[[redirects]]
+from = "/submit-comment"
+to = "/.netlify/functions/comment-submitted"
+status = 200
+force = true
+
+# Redirect for comment moderation UI
+[[redirects]]
+from = "/admin/comments"
+to = "/.netlify/functions/moderate-ui"
+status = 200
+
+# API endpoints
+[[redirects]]
+from = "/api/comments"
+to = "/.netlify/functions/get-comments"
+status = 200
+
+[[redirects]]
+from = "/api/moderate"
+to = "/.netlify/functions/moderate-comment"
+status = 200
+
+# Security headers
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Headers for API endpoints
+[[headers]]
+for = "/api/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+Access-Control-Allow-Headers = "Content-Type, Authorization"
+
+# Environment variables (these should be set in Netlify dashboard)
+# COMMENT_MODERATION_TOKEN = "your-secure-token-here"
+# MODERATOR_EMAIL = "admin@yoursite.com"
+# SENDGRID_API_KEY = "your-sendgrid-key" (optional, for email notifications)
+
+[functions]
+directory = "netlify/functions"

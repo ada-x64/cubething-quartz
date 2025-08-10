@@ -39,7 +39,7 @@
     "@floating-ui/dom": "^1.7.0",
     "@myriaddreamin/rehype-typst": "^0.6.0",
     "@napi-rs/simple-git": "0.1.19",
-    "@netlify/functions": "^3.1.8",
+    "@supabase/supabase-js": "^2.54.0",
     "@tweenjs/tween.js": "^25.0.0",
     "@webgpu/types": "^0.1.60",
     "ansi-truncate": "^1.2.0",
@@ -107,6 +107,7 @@
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.44.0",
+    "@netlify/functions": "^4.2.1",
     "@types/d3": "^7.4.3",
     "@types/hast": "^3.0.4",
     "@types/js-yaml": "^4.0.9",

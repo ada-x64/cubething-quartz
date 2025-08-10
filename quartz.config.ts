@@ -61,7 +61,7 @@ const config: QuartzConfig = {
       siteId: "Y1Jaut4BWsZEgmGjxCFs",
     },
     locale: "en-US",
-    ignorePatterns: ["private", "templates", ".obsidian", ".stfolder", ".git"],
+    ignorePatterns: ["private", "templates", ".*",  ".*/**"],
     defaultDateType: "published",
     theme: {
       fontOrigin: "local",

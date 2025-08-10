@@ -5,7 +5,13 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [Component.MobileOnly(Component.MobileNav())],
-  afterBody: [],
+  afterBody: [
+    Component.NetlifyComments({
+      allowAnonymous: true,
+      requireEmail: false,
+      moderationEmail: "ada@cubething.dev",
+    }),
+  ],
   footer: Component.Footer({
     links: {
       github: "https://github.com/ada-x64",

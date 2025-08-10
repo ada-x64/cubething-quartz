@@ -21,6 +21,7 @@ import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
 import Breadcrumbs from "./Breadcrumbs"
 import Comments from "./Comments"
+import NetlifyComments from "./NetlifyComments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import MobileNav from "./MobileNav"
@@ -49,6 +50,7 @@ export {
   NotFound,
   Breadcrumbs,
   Comments,
+  NetlifyComments,
   Flex,
   ConditionalRender,
   MobileNav,
