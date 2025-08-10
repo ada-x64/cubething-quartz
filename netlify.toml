@@ -16,10 +16,6 @@ minify = true
 [build.processing.html]
 pretty_urls = true
 
-# Form handling
-[[plugins]]
-package = "@netlify/functions"
-
 # Redirect for comment form submissions
 [[redirects]]
 from = "/submit-comment"
