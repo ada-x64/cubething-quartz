@@ -5,7 +5,26 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [Component.MobileOnly(Component.MobileNav())],
-  afterBody: [],
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.RecentNotes({
+        title: "Latest Posts",
+        limit: 3,
+        filter: (d) => !d.slug?.includes("index"),
+      }),
+      condition: (page) => page.fileData.frontmatter?.title === "home",
+    }),
+    Component.Comments({
+      options: {
+        repo: "ada-x64/cubething-quartz",
+        repoId: "R_kgDOOfN4Rg",
+        category: "main",
+        categoryId: "DIC_kwDOOfN4Rs4CuG1T",
+        reactionsEnabled: true,
+      },
+      provider: "giscus",
+    }),
+  ],
   footer: Component.Footer({
     links: {
       github: "https://github.com/ada-x64",
