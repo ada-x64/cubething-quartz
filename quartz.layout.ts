@@ -10,7 +10,7 @@ export const sharedPageComponents: SharedLayout = {
       component: Component.RecentNotes({
         title: "Latest Posts",
         limit: 3,
-        filter: (d) => !d.slug?.includes("index"),
+        filter: (d) => !d.slug?.includes("index") && !!d.frontmatter?.published,
       }),
       condition: (page) => page.fileData.frontmatter?.title === "home",
     }),
