@@ -7,10 +7,5 @@ CI = ''
 node = "22.15.0"
 
 [tasks]
-deploy_main = 'npx dotenvx run -f $MAIN_DOTENV -- npx quartz build'
+deploy_main = 'npx dotenvx run -f $MAIN_DOTENV -- npx quartz build -v'
 watch_main = 'npx dotenvx run -f $MAIN_DOTENV -- npx quartz build --watch'
-
-dev_main = "npx quartz build --watch & caddy file-server --listen :8080 --root $OUTPUT_DIRECTORY "
-
-deploy_example = 'npx dotenvx run -f $EXAMPLE_DOTENV -- npx quartz build'
-serve_example = 'npx dotenvx run -f $EXAMPLE_DOTENV -- npx quartz build --watch --serve'
