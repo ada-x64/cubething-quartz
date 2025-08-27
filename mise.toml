@@ -1,11 +1,13 @@
 [env]
-MAIN_DOTENV = "env/main.env"
-EXAMPLE_DOTENV = "env/example.env"
 CI = ''
+BASE_URL = "cubething.dev"
+CONTENT_DIRECTORY = "content/main"
+OUTPUT_DIRECTORY = "out/main/public"
+NODE_OPTIONS = "--max-old-space-size=4096"
 
 [tools]
 node = "22.15.0"
 
 [tasks]
-deploy_main = 'npx dotenvx run -f $MAIN_DOTENV -- npx quartz build -v'
-watch_main = 'npx dotenvx run -f $MAIN_DOTENV -- npx quartz build --watch'
+deploy = 'npx quartz build -v'
+watch = 'npx quartz build --watch'
