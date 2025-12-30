@@ -18,7 +18,6 @@ import {
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
-import { writeFile } from "fs/promises"
 
 type ComponentResources = {
   css: string[]
@@ -104,7 +103,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
           gtag('event', 'page_view', { page_title: document.title, page_location: location.href });
         });
       };
-      
+
       document.head.appendChild(gtagScript);
     `)
   } else if (cfg.analytics?.provider === "plausible") {
@@ -169,7 +168,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
       })\`
       posthogScript.onload = () => {
         posthog.capture('$pageview', { path: location.pathname });
-      
+
         document.addEventListener('nav', () => {
           posthog.capture('$pageview', { path: location.pathname });
         });
@@ -189,7 +188,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
           window.tinylytics.triggerUpdate();
         });
       };
-      
+
       document.head.appendChild(tinylyticsScript);
     `)
   } else if (cfg.analytics?.provider === "cabin") {

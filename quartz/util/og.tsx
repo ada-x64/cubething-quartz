@@ -2,8 +2,8 @@ import { promises as fs } from "fs"
 import { FontWeight, SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzPluginData } from "../plugins/vfile"
-import { JSXInternal } from "preact/src/jsx"
-import { FontSpecification, getFontSpecificationName, processGoogleFonts, ThemeKey } from "./theme"
+import { JSX } from "preact"
+import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
 import path from "path"
 import { isAbsoluteURL, joinSegments, QUARTZ } from "./path"
 import { formatDate, getDate } from "../components/Date"
@@ -12,7 +12,7 @@ import { i18n } from "../i18n"
 import chalk from "chalk"
 import chroma from "chroma-js"
 import { imageSizeFromFile } from "image-size/fromFile"
-import { ISizeCalculationResult } from "image-size/dist/types/interface"
+import { ISizeCalculationResult } from "image-size/types/interface"
 
 const defaultHeaderWeight = [700]
 const defaultBodyWeight = [400]
@@ -176,7 +176,7 @@ export type SocialImageOptions = {
       userOpts: UserOpts
       iconBase64?: string
     },
-  ) => Promise<JSXInternal.Element>
+  ) => Promise<JSX.Element>
 }
 
 export type UserOpts = Omit<SocialImageOptions, "imageStructure">
@@ -235,7 +235,10 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
 
   // get hero image
   let userDefinedOgImagePath = fileData.frontmatter?.socialImage
-  let bgImgSize: ISizeCalculationResult = { width: userOpts.width, height: userOpts.height }
+  let bgImgSize: ISizeCalculationResult = {
+    width: userOpts.width,
+    height: userOpts.height,
+  }
   if (userDefinedOgImagePath) {
     const rp = path.resolve(`${cfg.contentDirectory}/${userDefinedOgImagePath}`)
     const calculatedSize = await imageSizeFromFile(rp)

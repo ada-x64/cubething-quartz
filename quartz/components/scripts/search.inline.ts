@@ -1,9 +1,13 @@
-import FlexSearch from "flexsearch"
+import FlexSearch, {
+  DocumentData,
+  DocumentSearchOptions,
+  DocumentSearchResultsWrapper,
+} from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
-interface Item {
+interface Item extends DocumentData {
   id: number
   slug: FullSlug
   title: string
@@ -17,7 +21,6 @@ let searchType: SearchType = "basic"
 let currentSearchTerm: string = ""
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let index = new FlexSearch.Document<Item>({
-  charset: "latin:extra",
   encode: encoder,
   document: {
     id: "id",
@@ -397,7 +400,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     searchLayout.classList.toggle("display-results", currentSearchTerm !== "")
     searchType = currentSearchTerm.startsWith("#") ? "tags" : "basic"
 
-    let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
+    let searchResults: DocumentSearchResultsWrapper
     if (searchType === "tags") {
       currentSearchTerm = currentSearchTerm.substring(1).trim()
       const separatorIndex = currentSearchTerm.indexOf(" ")
@@ -410,8 +413,8 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
           // return at least 10000 documents, so it is enough to filter them by tag (implemented in flexsearch)
           limit: Math.max(numSearchResults, 10000),
           index: ["title", "content"],
-          tag: tag,
-        })
+          tag: { tag: tag },
+        } as DocumentSearchOptions)
         for (let searchResult of searchResults) {
           searchResult.result = searchResult.result.slice(0, numSearchResults)
         }

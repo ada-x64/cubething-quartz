@@ -1,3 +1,4 @@
+//@ts-ignore bad typings
 import micromorph from "micromorph"
 import { FullSlug, RelativeURL, getFullSlug, normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"

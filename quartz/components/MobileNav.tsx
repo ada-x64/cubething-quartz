@@ -13,11 +13,10 @@ import DarkmodeFactory from "./Darkmode"
 //@ts-ignore
 import darkmodeScript from "./scripts/darkmode.inline"
 
-type Options = ExplorerOptions & {}
+type Options = Partial<ExplorerOptions> & {}
 export const defaultOpts: Options = { ...DefaultExplorerOpts }
 
 export default ((userOpts?: Options) => {
-  const opts = { ...userOpts, ...defaultOpts }
   const Explorer = ExplorerFactory(userOpts)
   const TableOfContents = TableOfContentsFactory()
   const Backlinks = BacklinksFactory({ hideWhenEmpty: true })

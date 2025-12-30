@@ -30,7 +30,11 @@ mobileNavWrapper.addEventListener("click", (ev) => {
   closeMobileNav()
 })
 
-//@ts-ignore
+interface Window {
+  mousedown?: boolean
+  touchY?: number
+  initialTouchY?: number
+}
 
 mobileNavWrapper.addEventListener("touchstart", (ev) => {
   const target = ev.target as HTMLElement
@@ -48,7 +52,7 @@ mobileNavWrapper.addEventListener("touchend", (ev) => {
     return
   }
   window.mousedown = false
-  if (mobileNavWrapper.classList.contains("open") && window.touchY >= 100) {
+  if (mobileNavWrapper.classList.contains("open") && window.touchY! >= 100) {
     closeMobileNav()
   }
   mobileNavWrapper.style = ""
@@ -60,10 +64,13 @@ mobileNavWrapper.addEventListener("touchmove", (ev) => {
   }
   if (mobileNavWrapper.classList.contains("open")) {
     const newY = ev.changedTouches.item(0)?.clientY
-    if (window.initialTouchY == 0) {
+    if (newY == undefined) {
+      return
+    }
+    if (window.initialTouchY == 0 || window.initialTouchY == undefined) {
       window.initialTouchY = newY
     }
     window.touchY = Math.max(-10, newY - window.initialTouchY)
-    mobileNavWrapper.style.setProperty("transform", `translateY(${parseFloat(window.touchY)}px)`)
+    mobileNavWrapper.style.setProperty("transform", `translateY(${window.touchY ?? 0}px)`)
   }
 })
