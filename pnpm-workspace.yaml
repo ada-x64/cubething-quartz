@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - lightningcss-cli
+  - netlify-cli
+  - sharp
+  - unix-dgram

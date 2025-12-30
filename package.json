@@ -1,38 +1,26 @@
 {
-  "name": "@jackyzha0/quartz",
-  "description": "🌱 publish your digital garden and notes as a website",
+  "name": "cubething-quartz",
   "private": true,
   "version": "4.5.0",
   "type": "module",
-  "author": "jackyzha0 <j.zhao2k19@gmail.com>",
+  "authors": [
+    "ada <ada@cubething.dev>",
+    "jackyzha0 <j.zhao2k19@gmail.com>"
+  ],
   "license": "MIT",
-  "homepage": "https://quartz.jzhao.xyz",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jackyzha0/quartz.git"
-  },
   "scripts": {
+    "serve-local": "CONTENT_DIRECTORY=content/local OUT_DIRECTORY=out/local SHOW_DRAFTS=true pnpm quartz build --serve --concurrency=$(nproc)",
     "quartz": "./quartz/bootstrap-cli.mjs",
-    "docs": "npx quartz build --serve -d docs",
-    "check": "tsc --noEmit && npx prettier . --check",
-    "format": "npx prettier . --write",
+    "docs": "pnpx quartz build --serve -d docs",
+    "check": "tsc --noEmit && pnpx prettier . --check",
+    "format": "pnpx prettier . --write",
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
   },
+  "packageManager": "pnpm@10.26.2",
   "engines": {
-    "npm": ">=9.3.1",
-    "node": ">=20"
-  },
-  "keywords": [
-    "site generator",
-    "ssg",
-    "digital-garden",
-    "markdown",
-    "blog",
-    "quartz"
-  ],
-  "bin": {
-    "quartz": "./quartz/bootstrap-cli.mjs"
+    "pnpm": ">=10",
+    "node": ">=22"
   },
   "dependencies": {
     "@clack/prompts": "^0.10.1",
@@ -47,6 +35,7 @@
     "ayu": "^8.0.1",
     "chalk": "^5.4.1",
     "chokidar": "^4.0.3",
+    "chroma-js": "^3.2.0",
     "cli-spinner": "^0.2.10",
     "d3": "^7.9.0",
     "dotenv": "^16.5.0",
@@ -117,7 +106,7 @@
     "@types/yargs": "^17.0.33",
     "esbuild": "^0.25.4",
     "lightningcss-cli": "^1.30.0",
-    "netlify-cli": "^21.2.1",
+    "netlify-cli": "^23.13.0",
     "prettier": "^3.5.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
