@@ -5,7 +5,7 @@ import { QuartzPluginData } from "../plugins/vfile"
 import { JSX } from "preact"
 import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
 import path from "path"
-import { isAbsoluteURL, joinSegments, QUARTZ } from "./path"
+import { joinSegments, QUARTZ } from "./path"
 import { formatDate, getDate } from "../components/Date"
 import readingTime from "reading-time"
 import { i18n } from "../i18n"
@@ -235,6 +235,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
 
   // get hero image
   let userDefinedOgImagePath = fileData.frontmatter?.socialImage
+  let ogImageBuffer: ArrayBuffer | undefined = undefined
   let bgImgSize: ISizeCalculationResult = {
     width: userOpts.width,
     height: userOpts.height,
@@ -248,11 +249,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
     if (calculatedSize.height > userOpts.height) {
       bgImgSize.height = calculatedSize.height
     }
-  }
-  if (userDefinedOgImagePath) {
-    userDefinedOgImagePath = isAbsoluteURL(userDefinedOgImagePath)
-      ? userDefinedOgImagePath
-      : `https://${cfg.baseUrl}/${userDefinedOgImagePath}`
+    ogImageBuffer = (await fs.readFile(rp)).buffer
   }
 
   const normalFont = userDefinedOgImagePath ? 48 : 72
@@ -302,25 +299,27 @@ export const defaultImage: SocialImageOptions["imageStructure"] = async ({
       }
     : {}
 
-  const bgImg = userDefinedOgImagePath ? (
-    <div
-      style={{
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backgroundColor: cfg.theme.colors[colorScheme].light,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <img src={userDefinedOgImagePath} width={bgImgSize.width} height={bgImgSize.height} />
-    </div>
-  ) : (
-    <></>
-  )
+  const bgImg =
+    userDefinedOgImagePath && ogImageBuffer ? (
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+          backgroundColor: cfg.theme.colors[colorScheme].light,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {/** @ts-ignore satori supports ArrayBuffer as img src */}
+        <img src={ogImageBuffer} width={bgImgSize.width} height={bgImgSize.height} />
+      </div>
+    ) : (
+      <></>
+    )
 
   const background = userDefinedOgImagePath
     ? {
