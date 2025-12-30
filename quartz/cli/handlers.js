@@ -274,6 +274,7 @@ export async function handleBuild(argv) {
                 resolveDir,
                 sourcefile,
               },
+              keepNames: false,
               write: false,
               bundle: true,
               minify: true,

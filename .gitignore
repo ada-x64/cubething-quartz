@@ -1,5 +1,4 @@
 .DS_Store
-.gitignore
 node_modules
 public
 prof
@@ -15,5 +14,7 @@ replit.nix
 .env.keys
 out
 .envrc
-# Local Netlify folder
 .netlify
+.git
+content/**/.gitignore
+content/local

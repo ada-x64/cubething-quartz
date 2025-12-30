@@ -22,7 +22,7 @@ export interface Options {
   order: OrderEntries[]
 }
 
-const defaultOptions: Options = {
+export const defaultOptions: Options = {
   folderDefaultState: "collapsed",
   folderClickBehavior: "link",
   useSavedState: true,

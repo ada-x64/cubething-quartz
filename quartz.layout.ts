@@ -1,10 +1,48 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { FileTrieNode } from "./quartz/util/fileTrie"
+
+const sortFn = (a: FileTrieNode, b: FileTrieNode) => {
+  if (a.isFolder && b.isFolder) {
+    return a.displayName.localeCompare(b.displayName, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    })
+  } else if (!a.isFolder && !b.isFolder) {
+    let aDate = a.data?.date
+    if (aDate === undefined) {
+      const match = a.data?.filePath.match(/\d+-\d+\-d+/)
+      if (match !== null && match !== undefined) {
+        aDate = new Date(match[0])
+      } else {
+        aDate = new Date(0)
+      }
+    }
+    let bDate = a.data?.date
+    if (bDate === undefined) {
+      const match = a.data?.filePath.match(/\d+-\d+\-d+/)
+      if (match !== null && match !== undefined) {
+        bDate = new Date(match[0])
+      } else {
+        bDate = new Date(0)
+      }
+    }
+    if (bDate > aDate) {
+      return 1
+    } else {
+      return -1
+    }
+  } else if (!a.isFolder && b.isFolder) {
+    return -1
+  } else {
+    return 1
+  }
+}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [Component.MobileOnly(Component.MobileNav())],
+  header: [Component.MobileOnly(Component.MobileNav({ sortFn }))],
   afterBody: [
     Component.ConditionalRender({
       component: Component.RecentNotes({
@@ -63,7 +101,7 @@ export const defaultContentPageLayout: PageLayout = {
         ],
       }),
     ),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({ sortFn })),
   ],
   right: [
     // Component.Graph(),
@@ -88,7 +126,11 @@ export const defaultListPageLayout: PageLayout = {
         ],
       }),
     ),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(
+      Component.Explorer({
+        sortFn,
+      }),
+    ),
   ],
   right: [],
 }

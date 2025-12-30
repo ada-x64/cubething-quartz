@@ -58,7 +58,7 @@ async function transpileWorkerScript() {
     entryPoints: [fp],
     outfile: path.join(QUARTZ, cacheFile),
     bundle: true,
-    keepNames: true,
+    keepNames: false,
     platform: "node",
     format: "esm",
     packages: "external",
