@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "serve-local": "CONTENT_DIRECTORY=content/local OUT_DIRECTORY=out/local SHOW_DRAFTS=true pnpm quartz build --serve --concurrency=$(nproc)",
+    "build": "CONTENT_DIRECTORY=content/main OUT_DIRECTORY=out/main pnpm quartz build -v --concurrency $(nproc)",
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "pnpx quartz build --serve -d docs",
     "check": "tsc --noEmit && pnpx prettier . --check",
