@@ -24,6 +24,8 @@ import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import MobileNav from "./MobileNav"
+import { PortfolioProjects } from "./PortfolioProjects"
+import { PortfolioSkills } from "./PortfolioSkills"
 
 export {
   ArticleTitle,
@@ -52,4 +54,6 @@ export {
   Flex,
   ConditionalRender,
   MobileNav,
+  PortfolioProjects,
+  PortfolioSkills,
 }

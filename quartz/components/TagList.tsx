@@ -37,7 +37,7 @@ TagList.css = `
 .section-li > .section > .tags {
   justify-content: flex-end;
 }
-  
+
 .tags > li {
   display: inline-block;
   white-space: nowrap;
@@ -45,7 +45,7 @@ TagList.css = `
   overflow-wrap: normal;
 }
 
-a.internal.tag-link {
+.tag-link {
   border-radius: 8px;
   background-color: var(--highlight);
   padding: 0.2rem 0.4rem;

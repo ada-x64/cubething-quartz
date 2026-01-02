@@ -91,6 +91,7 @@ const config: QuartzConfig = {
         },
         keepBackground: true,
       }),
+      Plugin.PortfolioPlugin(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),

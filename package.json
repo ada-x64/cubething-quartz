@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "serve-local": "CONTENT_DIRECTORY=content/local OUT_DIRECTORY=out/local SHOW_DRAFTS=true pnpm quartz build --serve --concurrency=$(nproc)",
+    "build-local": "CONTENT_DIRECTORY=content/local OUT_DIRECTORY=out/local SHOW_DRAFTS=true pnpm quartz build --concurrency=$(nproc)",
     "build": "NODE_OPTIONS=--max-old-space-size=8192 CONTENT_DIRECTORY=content/main OUT_DIRECTORY=out/main pnpm quartz build -v --concurrency $(nproc)",
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "pnpx quartz build --serve -d docs",
@@ -98,7 +99,8 @@
     "vfile": "^6.0.3",
     "workerpool": "^9.2.0",
     "ws": "^8.18.2",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.44.0",
