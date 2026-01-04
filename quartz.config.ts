@@ -97,7 +97,7 @@ const config: QuartzConfig = {
           email: "mailto:ada@cubething.dev",
           resume: "/static/resume.pdf",
           github: "https://github.com/ada-x64/",
-          linkedin: "https://linkedin.com/ada-mandala",
+          linkedin: "https://linkedin.com/in/ada-mandala",
         },
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
