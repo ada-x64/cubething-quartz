@@ -45,12 +45,12 @@
   }
 }
 
-@media all and not ($desktop) {
+@media all {
   .projects {
     grid: none/100%;
   }
 }
-@media all and ($desktop) {
+@media all and (min-width: 1358px) {
   .projects {
     grid: none/50% 50%;
   }
@@ -79,5 +79,31 @@
       padding: 1em;
       fill: var(--callout-color);
     }
+  }
+}
+
+.contact {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  justify-content: center;
+
+  svg {
+    height: 2em;
+    width: auto;
+    transition: 0.25s;
+    fill: var(--secondary);
+
+    &:hover {
+      fill: var(--tertiary);
+    }
+  }
+
+  a.internal {
+    background: none;
+  }
+  svg.external-icon {
+    display: none;
   }
 }

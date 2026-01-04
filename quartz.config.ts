@@ -91,7 +91,15 @@ const config: QuartzConfig = {
         },
         keepBackground: true,
       }),
-      Plugin.PortfolioPlugin(),
+      Plugin.JsxPlugin({
+        contact: {
+          bsky: "https://bsky.app/profile/cubething.dev",
+          email: "mailto:ada@cubething.dev",
+          resume: "/static/resume.pdf",
+          github: "https://github.com/ada-x64/",
+          linkedin: "https://linkedin.com/ada-mandala",
+        },
+      }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),

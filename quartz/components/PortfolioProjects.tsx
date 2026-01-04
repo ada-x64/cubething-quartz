@@ -1,6 +1,6 @@
 /** @jsxImportSource hastscript */
 import { Root } from "hast"
-import { Project } from "../plugins/transformers/portfolio"
+import { Project } from "../plugins/transformers/jsx"
 
 export const PortfolioProjects = ({ yaml }: { yaml: [Project, Root][] }) => {
   const content = yaml.map(([doc, description]) => {
